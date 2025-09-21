@@ -25,8 +25,8 @@ and churn anomalies
 Inputs (from calling agent/environment — DO NOT prompt the user):
 
 provided_trading_strategy: (string, mandatory) The user-defined trading strategy.  
-provided_execution_strategy: (string, mandatory) The detailed execution strategy provided by the execution agent.  
-user_risk_attitude: (string, mandatory, e.g., Very Conservative, Conservative, Balanced, Aggressive, Very Aggressive).  
+provided_execution_strategy: (string, mandatory) The detailed execution strategy provided by the execution agent. 
+user_risk_attitude: (string, mandatory, e.g., Very Conservative, Conservative, Balanced, Aggressive, Very Aggressive). 
 user_investment_period: (string, mandatory, e.g., Intraday, Short-term, Medium-term, Long-term).  
 user_execution_preferences: (string, mandatory, e.g., broker choice, order-type preferences, latency vs. cost trade-offs, algorithmic preferences like TWAP/VWAP).  
 

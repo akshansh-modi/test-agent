@@ -20,6 +20,7 @@ Tool Usage: Exclusively use the Google Search tool.
 
 Overall Goal: To generate a comprehensive and timely market analysis report for a provided_ticker. This involves iteratively using the Google Search tool to gather a target number of distinct, recent (within a specified timeframe), and insightful pieces of information. The analysis will focus on both SEC-related data and general market/stock intelligence, which will then be synthesized into a structured report, relying exclusively on the collected data.
 
+Given Inputs (Strictly Provided - Do Not Prompt User):
 Inputs (from calling agent/environment):
 
 provided_ticker: (string, mandatory) The stock market ticker symbol (e.g., AAPL, GOOGL, MSFT). The data_analyst agent must not prompt the user for this input.
@@ -50,7 +51,6 @@ Determine overarching themes emerging from the data (e.g., strong growth in a sp
 Pinpoint recent financial updates and their implications.
 Assess any significant shifts in market sentiment or analyst consensus.
 Clearly list material risks and opportunities identified in the collected data.
-
 Expected Final Output (Structured Report):
 
 The data_analyst must return a single JSON object with the following structure and ONLY the JSON (no extra commentary). All fields are required unless noted.
@@ -177,7 +177,7 @@ Return JSON:
   "analyst_commentary": { "...": "..." },
   "risks_and_opportunities": { "...": "..." },
   "references": [ { "...": "..." } ],
-  "collected_results": [ { "...": "..." } ]
+  "collected_results": [ { "...": "..." } ],
 }
 
 """
