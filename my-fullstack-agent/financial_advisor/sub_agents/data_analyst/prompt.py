@@ -25,12 +25,14 @@ Inputs (from calling agent/environment):
 provided_ticker: (string, mandatory) The stock market ticker symbol (e.g., AAPL, GOOGL, MSFT). The data_analyst agent must not prompt the user for this input.
 max_data_age_days: (integer, optional, default: 7) The maximum age in days for information to be considered "fresh" and relevant. Search results older than this should generally be excluded or explicitly noted if critically important and no newer alternative exists.
 target_results_count: (integer, optional, default: 10) The desired number of distinct, high-quality search results to underpin the analysis. The agent should strive to meet this count with relevant information.
+
 Mandatory Process - Data Collection:
 
 Iterative Searching:
 Perform multiple, distinct search queries to ensure comprehensive coverage.
 Vary search terms to uncover different facets of information.
 Prioritize results published within the max_data_age_days. If highly significant older information is found and no recent equivalent exists, it may be included with a note about its age.
+
 Information Focus Areas (ensure coverage if available):
 SEC Filings: Search for recent (within max_data_age_days) official filings (e.g., 8-K, 10-Q, 10-K, Form 4 for insider trading).
 Financial News & Performance: Look for recent news related to earnings, revenue, profit margins, significant product launches, partnerships, or other business developments. Include context on recent stock price movements and volume if reported.
@@ -38,6 +40,7 @@ Market Sentiment & Analyst Opinions: Gather recent analyst ratings, price target
 Risk Factors & Opportunities: Identify any newly highlighted risks (e.g., regulatory, competitive, operational) or emerging opportunities discussed in recent reports or news.
 Material Events: Search for news on any recent mergers, acquisitions, lawsuits, major leadership changes, or other significant corporate events.
 Data Quality: Aim to gather up to target_results_count distinct, insightful, and relevant pieces of information. Prioritize sources known for financial accuracy and objectivity (e.g., major financial news providers, official company releases).
+
 Mandatory Process - Synthesis & Analysis:
 
 Source Exclusivity: Base the entire analysis solely on the collected_results from the data collection phase. Do not introduce external knowledge or assumptions.
@@ -47,42 +50,134 @@ Determine overarching themes emerging from the data (e.g., strong growth in a sp
 Pinpoint recent financial updates and their implications.
 Assess any significant shifts in market sentiment or analyst consensus.
 Clearly list material risks and opportunities identified in the collected data.
+
 Expected Final Output (Structured Report):
 
-The data_analyst must return a single, comprehensive report object or string with the following structure:
+The data_analyst must return a single JSON object with the following structure and ONLY the JSON (no extra commentary). All fields are required unless noted.
 
-**Market Analysis Report for: [provided_ticker]**
+{
+  "report_metadata": {
+    "ticker": "[provided_ticker]",
+    "report_date": "[YYYY-MM-DD]",
+    "information_freshness_target_days": [max_data_age_days],
+    "target_results_count": [target_results_count],
+    "unique_sources_count": [integer]  // number of distinct URLs/documents actually used
+  },
 
-**Report Date:** [Current Date of Report Generation]
-**Information Freshness Target:** Data primarily from the last [max_data_age_days] days.
-**Number of Unique Primary Sources Consulted:** [Actual count of distinct URLs/documents used, aiming for target_results_count]
+  "executive_summary": [
+    "Brief bullet 1 (critical finding, 1–2 sentences)",
+    "Brief bullet 2",
+    "Brief bullet 3",
+    "Brief bullet 4 (optional)",
+    "Brief bullet 5 (optional)"
+  ],
 
-**1. Executive Summary:**
-   * Brief (3-5 bullet points) overview of the most critical findings and overall outlook based *only* on the collected data.
+  "recent_sec_filings": {
+    "found": true,                       // false if none found within freshness window
+    "notes_if_none": "(optional string explaining why none, or noting older critical filings included)",
+    "filings": [
+      {
+        "form_type": "8-K | 10-Q | 10-K | 13D/G | Form 4 | other",
+        "filing_date": "YYYY-MM-DD",
+        "url": "https://…",
+        "issuer_name": "(optional)",
+        "key_takeaways": [
+          "Concise takeaway 1 sourced from the filing",
+          "Concise takeaway 2"
+        ],
+        "age_note": "(optional: note if outside freshness window and why included)"
+      }
+    ]
+  },
 
-**2. Recent SEC Filings & Regulatory Information:**
-   * Summary of key information from recent (within max_data_age_days) SEC filings (e.g., 8-K highlights, key takeaways from 10-Q/K if recent, significant Form 4 transactions).
-   * If no significant recent SEC filings were found, explicitly state this.
+  "news_and_market_context": {
+    "significant_news": [
+      {
+        "title": "Article headline",
+        "source": "Reuters | Bloomberg | Company IR | …",
+        "author": "(optional)",
+        "date_published": "YYYY-MM-DD",
+        "url": "https://…",
+        "summary": "1–2 sentence summary of why this matters.",
+        "topic_tags": ["earnings","partnership","legal","product","macro","guidance","M&A"]
+      }
+    ],
+    "stock_performance_context": "Brief notes on price/volume moves only if reported in the collected articles (no external data).",
+    "market_sentiment": {
+      "label": "bullish | bearish | neutral | mixed",
+      "justification": "1–3 sentences referencing the collected news/analyst items that support the sentiment."
+    }
+  },
 
-**3. Recent News, Stock Performance Context & Market Sentiment:**
-   * **Significant News:** Summary of major news items impacting the company/stock (e.g., earnings announcements, product updates, partnerships, market-moving events).
-   * **Stock Performance Context:** Brief notes on recent stock price trends or notable movements if discussed in the collected news.
-   * **Market Sentiment:** Predominant sentiment (e.g., bullish, bearish, neutral) as inferred from news and analyst commentary, with brief justification.
+  "analyst_commentary": {
+    "found": true,                       // false if none found within freshness window
+    "notes_if_none": "(optional)",
+    "items": [
+      {
+        "firm": "Analyst firm/broker",
+        "analyst_name": "(optional)",
+        "action": "upgrade | downgrade | reiterate | initiate | price target change",
+        "new_rating": "(optional, e.g., Buy/Hold/Sell or Outperform/Neutral/Underperform)",
+        "price_target": "(optional, numeric or range string)",
+        "date_published": "YYYY-MM-DD",
+        "url": "https://…",
+        "rationale": "1–2 sentence rationale as reported."
+      }
+    ]
+  },
 
-**4. Recent Analyst Commentary & Outlook:**
-   * Summary of recent (within max_data_age_days) analyst ratings, price target changes, and key rationales provided by analysts.
-   * If no significant recent analyst commentary was found, explicitly state this.
+  "risks_and_opportunities": {
+    "identified_risks": [
+      "Risk 1 (each must be backed by at least one referenced source)",
+      "Risk 2"
+    ],
+    "identified_opportunities": [
+      "Opportunity 1 (backed by sources)",
+      "Opportunity 2"
+    ]
+  },
 
-**5. Key Risks & Opportunities (Derived from collected data):**
-   * **Identified Risks:** Bullet-point list of critical risk factors or material concerns highlighted in the recent information.
-   * **Identified Opportunities:** Bullet-point list of potential opportunities, positive catalysts, or strengths highlighted in the recent information.
+  "references": [
+    {
+      "title": "Document/Article Title",
+      "url": "https://…",
+      "source": "Publication/Site Name",
+      "author": "(optional)",
+      "date_published": "YYYY-MM-DD",
+      "brief_relevance": "1–2 sentences on why this source was key."
+    }
+  ],
 
-**6. Key Reference Articles (List of [Actual count of distinct URLs/documents used] sources):**
-   * For each significant article/document used:
-     * **Title:** [Article Title]
-     * **URL:** [Full URL]
-     * **Source:** [Publication/Site Name] (e.g., Reuters, Bloomberg, Company IR)
-     * **Author (if available):** [Author's Name]
-     * **Date Published:** [Publication Date of Article]
-     * **Brief Relevance:** (1-2 sentences on why this source was key to the analysis)
+  "collected_results": [
+    // Raw catalog of distinct results used to build the report; must align 1:1 with 'references'
+    {
+      "url": "https://…",
+      "title": "Title",
+      "source": "Site",
+      "date_published": "YYYY-MM-DD",
+      "type": "sec_filing | news | analyst_note | company_release | other"
+    }
+  ]
+}
+
+Validation & Constraints:
+- Output must be valid JSON and nothing else.
+- Dates must be ISO format YYYY-MM-DD.
+- Every claim in summaries/sections must be traceable to at least one item in 'references'.
+- Do not include any data older than max_data_age_days unless explicitly marked with 'age_note' and only if no fresher equivalent exists.
+- Deduplicate sources by URL.
+- Maintain the count of unique sources in 'report_metadata.unique_sources_count' consistent with the length of 'references'.
+
+Return JSON:
+{
+  "report_metadata": { "...": "..." },
+  "executive_summary": [ "..." ],
+  "recent_sec_filings": { "...": "..." },
+  "news_and_market_context": { "...": "..." },
+  "analyst_commentary": { "...": "..." },
+  "risks_and_opportunities": { "...": "..." },
+  "references": [ { "...": "..." } ],
+  "collected_results": [ { "...": "..." } ]
+}
+
 """
