@@ -20,9 +20,7 @@ from typing import Any, Dict
 import google.auth
 import httpx
 from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
 from google.adk.cli.fast_api import get_fast_api_app
-from google.cloud import logging as google_cloud_logging
 from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider, export
 from vertexai import agent_engines
@@ -37,10 +35,8 @@ from financial_advisor.response_extractor import (
 )
 
 _, project_id = google.auth.default()
-# Set default CORS origins if not provided via environment variable
-default_origins = "http://localhost:3000,http://127.0.0.1:3000"
 allow_origins = (
-    os.getenv("ALLOW_ORIGINS", default_origins).split(",") if os.getenv("ALLOW_ORIGINS", default_origins) else None
+    os.getenv("ALLOW_ORIGINS", "").split(",") if os.getenv("ALLOW_ORIGINS") else None
 )
 
 bucket_name = f"gs://{project_id}-my-fullstack-agent-logs-data"
@@ -79,15 +75,6 @@ app: FastAPI = get_fast_api_app(
 )
 app.title = "my-fullstack-agent"
 app.description = "API for interacting with the Agent my-fullstack-agent"
-
-# Add CORS middleware to handle cross-origin requests
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],  # Frontend origins
-    allow_credentials=True,
-    allow_methods=["*"],  # Allow all methods including OPTIONS
-    allow_headers=["*"],  # Allow all headers
-)
 
 
 @app.post("/feedback")

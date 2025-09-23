@@ -36,6 +36,7 @@ Action: Prompt the user to specify their investment period.
 Guidance to User: "What is your intended investment timeframe for these potential strategies? For instance, 
 are you thinking 'short-term' (e.g., up to 1 year), 'medium-term' (e.g., 1 to 3 years), or 'long-term' (e.g., 3+ years)?"
 Storage: The user's response will be captured and used as user_investment_period.
+if not provided use default value "Medium-term"
 Market Analysis Data (from state):
 
 * Required State Key: market_data_analysis_output.
