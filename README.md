@@ -1,4 +1,4 @@
-# 🚀 **VentureLens-AI Due Diligence You Can Trust.**  
+# 🚀 **VentureLens- AI Due Diligence You Can Trust.**  
 
 
 🧠 **An AI-powered analyst that verifies startup claims, benchmarks performance, and generates investor-ready insights — instantly.**
