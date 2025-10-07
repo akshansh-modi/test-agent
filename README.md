@@ -3,6 +3,8 @@
 
 🧠 **An AI-powered analyst that verifies startup claims, benchmarks performance, and generates investor-ready insights — instantly.**
 
+<img src="Assets/Analyzed data.png" alt="VentureLens Banner" width="800"/>
+
 🌐 **Live Demo:** [https://agenticwizards.dev/](https://agenticwizards.dev/)  
 🔗 Built for **Google Gen AI Hackathon 2025**
 
