@@ -60,7 +60,7 @@ It acts as an **AI analyst**, powered by **Google Cloud** and **Vertex AI**, tha
 
 | Layer | Technologies Used | Purpose |
 |-------|-------------------|----------|
-| **Frontend** | ⚛️ Next.js · 💨 TailwindCSS · 📊 Recharts | Modern, interactive investor dashboard |
+| **Frontend** | ⚛️ Next.js · 💨 TailwindCSS · | Modern, interactive investor dashboard |
 | **Backend** | 🟩 Node.js (Express) · ☁️ Cloud Run | Core API and analysis orchestration |
 | **Storage** | 🗄️ Google Cloud Storage Buckets | Uploads, text processing, and PDF exports |
 | **AI / ML** | 🤖 Vertex AI Gemini 2.5 Pro · 🔍 Vertex AI Grounding | Claim extraction, reasoning, and memo generation |
