@@ -130,3 +130,43 @@ This structure mirrors the workflow of a professional investment team — modula
 
 ---
 
+## 🧭 Current Prototype Capabilities
+
+✅ **Ingests PDF pitch decks only**  
+✅ **Extracts key startup metrics** using Vertex AI Gemini reasoning  
+✅ **Cross-verifies claims** via RAG corpus and limited web scraping  
+✅ **Visualizes red flags** through the Risk Radar  
+✅ **Benchmarks startup activity** using mock BigQuery datasets  
+✅ **Generates investor memos** with citations and scoring sliders  
+
+---
+
+### 🔜 Future Scope
+
+- 🎤 **Founder call (MP4) analysis** with Speech-to-Text  
+- 📧 **Email update ingestion** for continuous startup monitoring  
+- ⚡ **Real-time BigQuery benchmarking pipeline** for live market signals  
+- 🧮 **Sector-specific RAG datasets** for domain-optimized accuracy  
+
+---
+
+## 🧠 Example Use Case
+
+1. Upload a SaaS startup’s **PDF pitch deck**.  
+2. **VentureLens** extracts metrics: ARR = \$1.2M, MRR = \$70k → flags ARR mismatch (12× rule).  
+3. The **RAG corpus** cross-checks the TAM claim (“\$3B market”) → confirms only \$1.8B via verified web data.  
+4. **Risk Radar** displays two alerts — ARR mismatch & inflated TAM.  
+5. **Benchmarks** from BigQuery show the sector trend rising +6%.  
+6. **Gemini** composes the investor memo:  
+
+> “Proceed to diligence. Strong traction, moderate TAM inflation detected.”
+
+---
+
+## 💡 Final Thoughts
+
+> **VentureLens** transforms static founder decks into **actionable, verified investment intelligence** —  
+> empowering investors with **clarity, confidence, and speed**.  
+> It’s not just due diligence — it’s **AI diligence, redefined.**
+
+
