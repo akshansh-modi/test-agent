@@ -1,5 +1,3 @@
-<div align="center">
-
 # 🚀 **VentureLens**  
 ### _AI Due Diligence You Can Trust._
 
