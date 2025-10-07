@@ -6,16 +6,16 @@
 🌐 **Live Demo:** [https://agenticwizards.dev/](https://agenticwizards.dev/)  
 🔗 Built for **Google Gen AI Hackathon 2025**
 
----
-
 </div>
+
+---
 
 ## 🏆 Overview
 
 Early-stage investors spend hours analyzing messy founder data — pitch decks, updates, and scattered market information — only to risk missing critical red flags.  
 **VentureLens** changes that.
 
-It acts as an **AI analyst**, powered by **Google Cloud and Vertex AI**, that reads founder pitch decks, verifies claims using **retrieval-augmented reasoning**, and produces a **benchmark-backed investor memo** with citations and risk analysis.
+It acts as an **AI analyst**, powered by **Google Cloud** and **Vertex AI**, that reads founder pitch decks, verifies claims using **retrieval-augmented reasoning (RAG)**, and produces a **benchmark-backed investor memo** with citations and risk analysis.
 
 ---
 
@@ -23,8 +23,8 @@ It acts as an **AI analyst**, powered by **Google Cloud and Vertex AI**, that re
 
 > “Investors are drowning in data — but starving for verified insight.”
 
-- Pitch decks contain inconsistent or inflated metrics (ARR, TAM, churn).  
-- Market validation requires hours of manual research.  
+- Pitch decks often contain **inconsistent or inflated metrics** (ARR, TAM, churn).  
+- Market validation requires **hours of manual research**.  
 - Evaluation results vary from analyst to analyst — low consistency and scalability.  
 
 ---
@@ -32,12 +32,13 @@ It acts as an **AI analyst**, powered by **Google Cloud and Vertex AI**, that re
 ## 🌟 Solution — _VentureLens_
 
 **VentureLens** transforms unstructured founder data into structured, verifiable insights through:
+
 1. 📄 **PDF Pitch Deck Ingestion** — Upload any founder deck (PDF format).  
 2. 🤖 **Claim Extraction** — Identify key metrics like ARR, MRR, TAM, churn, and customers.  
 3. 🔍 **Verification (RAG + Web)** — Cross-check claims using a **RAG Engine Corpus** and **live web scraping** for factual accuracy.  
-4. 📊 **Benchmarking (BigQuery)** — Compare startups with public datasets: GDELT, GitHub, Patents, Google Trends.  
-5. ⚠️ **Risk Radar** — Detects inconsistencies and visualizes red flags.  
-6. 🧾 **Memo Generation (Gemini)** — Outputs a clean, cited investor memo with scoring sliders and recommendations.
+4. 📊 **Benchmarking (BigQuery)** — Compare startups with public datasets: **GDELT**, **GitHub Archive**, **Patents**, and **Google Trends**.  
+5. ⚠️ **Risk Radar** — Detect inconsistencies and visualize red flags.  
+6. 🧾 **Memo Generation (Gemini)** — Output a clean, cited investor memo with scoring sliders and recommendations.
 
 ---
 
@@ -45,11 +46,11 @@ It acts as an **AI analyst**, powered by **Google Cloud and Vertex AI**, that re
 
 | 💡 Feature | 🧩 Description |
 |------------|----------------|
-| **Document + Web Verification** | Combines RAG corpus + Gemini reasoning + live scraping to cross-check every claim from the uploaded deck. |
+| **Document + Web Verification** | Combines **RAG corpus + Gemini reasoning + live scraping** to cross-check every claim from the uploaded deck. |
 | **Modular Multi-Agent Architecture** | Independent AI agents — Collector, Benchmarker, Risk, Note-Writer — ensure transparency and explainability. |
-| **Explainable Insights** | Every metric includes citations (from the deck or verified public sources). |
+| **Explainable Insights** | Every metric includes citations from the pitch deck or verified public sources. |
 | **Risk Radar Visualization** | Rule-based radar detects inconsistencies (ARR vs MRR, TAM inflation, trend decline). |
-| **Scalable Cloud Storage** | Google Cloud Storage handles all uploads, processed text, and memo exports securely. |
+| **Scalable Cloud Storage** | **Google Cloud Storage** handles all uploads, processed text, and memo exports securely. |
 
 ---
 
@@ -64,7 +65,7 @@ It acts as an **AI analyst**, powered by **Google Cloud and Vertex AI**, that re
 | **Storage** | 🗄️ Google Cloud Storage Buckets | Uploads, text processing, and PDF exports |
 | **AI / ML** | 🤖 Vertex AI Gemini 2.5 Pro · 🔍 Vertex AI Grounding | Claim extraction, reasoning, and memo generation |
 | **Retrieval Engine** | 🧩 RAG Corpus + Web Scraping | Verifies startup claims against external data |
-| **Benchmarking** | 📈 BigQuery Public Datasets (GDELT, GitHub Archive, Patents, Google Trends) | Sector and performance benchmarking |
+| **Benchmarking** | 📈 BigQuery Public Datasets (GDELT, GitHub, Patents, Google Trends) | Sector and performance benchmarking |
 | **Vision** | 👁️ Cloud Vision API | OCR extraction from PDF decks |
 | **Monitoring** | 🔎 Cloud Logging + Cloud Monitoring | Debugging and performance analytics |
 
@@ -167,6 +168,6 @@ This structure mirrors the workflow of a professional investment team — modula
 
 > **VentureLens** transforms static founder decks into **actionable, verified investment intelligence** —  
 > empowering investors with **clarity, confidence, and speed**.  
-> It’s not just due diligence — it’s **AI diligence, redefined.**
-
-
+> It’s not just due diligence — it’s **AI diligence, redefined.**  
+>  
+> 🧭 _Where intelligence meets investment — powered by Google Cloud and Vertex AI._
